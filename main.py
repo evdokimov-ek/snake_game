@@ -13,6 +13,10 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+with open("high_score.txt", mode="r") as file_high_score:
+    high_score = file_high_score.read()
+    # scoreboard.high_score = high_score
+    print(high_score)
 
 screen.listen()
 screen.onkey(snake.up, "Up")
@@ -34,14 +38,13 @@ while game_is_on:
 
     # Detect collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        scoreboard.game_over()
-        game_is_on = False
+        scoreboard.reset()
+        snake.reset()
 
     # Detect collision with tail
     for segment in snake.segments[2:]:
         if snake.head.distance(segment) < 10:
-            scoreboard.game_over()
-            game_is_on = False
-
+            scoreboard.reset()
+            snake.reset()
 
 screen.exitonclick()
