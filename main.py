@@ -13,10 +13,6 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
-with open("high_score.txt", mode="r") as file_high_score:
-    high_score = file_high_score.read()
-    # scoreboard.high_score = high_score
-    print(high_score)
 
 screen.listen()
 screen.onkey(snake.up, "Up")
